@@ -4,3 +4,16 @@
 	# Fix for bug T64289
 	Options +FollowSymLinks
 </IfModule>
+
+# Serve HTML as plaintext, don't execute SHTML
+AddType text/plain .html .htm .shtml .phtml .php .php3 .php4 .php5 .php7
+
+# Old way of registering php with AddHandler
+RemoveHandler .php
+
+# Recent way of registering php with SetHandler
+<FilesMatch "\.ph(p[3457]?s?|tml)$">
+   SetHandler None
+</FilesMatch>
+
+# If you've other scripting languages, disable them too.
